@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css"> <!-- fontawesome -->
+    <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+
+
+</head>
+<body>    
+    <!-- Intro -->
+    <div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="img/galaxia.png">
+        <div class="container mx-auto px-2">
+            <div class="sm:pb-60 sm:pt-48 py-20">
+                <div class="bg-black bg-opacity-100 p-12 mb-5 text-center">
+                    <img src="img/logo.png" alt="Image" width="200" height="200" class="rounded-md">
+                    <h1 class="text-white">Buenos dias pastelero!</h1>
+                </div>    
+                <div class="bg-black bg-opacity-100 p-10 mb-5">
+                    <table align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
+<tr>
+<th class="text-white">Nombre</th>
+<th class="text-white">Pastel</th>
+<th class="text-white">Detalles</th>
+</tr>
+
+<tr id="row1">
+<td id="name_row1"class="text-white">Juan Sanchez</td>
+<td id="country_row1" class="text-white">Chocolate Rocket, Vanilla Star</td>
+<td id="age_row1" class="text-white">Alergico a la Nuez</td>
+<td>
+<input type="button" id="edit_button1" value="Editar" class="edit" onclick="edit_row('1')">
+<input type="button" id="save_button1" value="Guardar" class="save" onclick="save_row('1')">
+<input type="button" value="Entregado" class="delete" onclick="delete_row('1')">
+</td>
+</tr>
+
+<tr id="row2">
+<td id="name_row2" class="text-white">Patricia Lopez</td>
+<td id="country_row2" class="text-white">Milky Way</td>
+<td id="age_row2" class="text-white">Intolerante a la lactosa</td>
+<td>
+<input type="button" id="edit_button2" value="Editar" class="edit" onclick="edit_row('2')">
+<input type="button" id="save_button2" value="Guardar" class="save" onclick="save_row('2')">
+<input type="button" value="Entregado" class="delete" onclick="delete_row('2')">
+</td>
+</tr>
+
+<tr id="row3">
+<td id="name_row3" class="text-white">Manuel Campos</td>
+<td id="country_row3" class="text-white">Vanilla Star</td>
+<td id="age_row3" class="text-white">Agregar fresas frescas</td>
+<td>
+<input type="button" id="edit_button3" value="Editar" class="edit" onclick="edit_row('3')">
+<input type="button" id="save_button3" value="Guardar" class="save" onclick="save_row('3')">
+<input type="button" value="Entregado" class="delete" onclick="delete_row('3')">
+</td>
+</tr>
+
+<tr>
+<td><input type="text" id="new_name"></td>
+<td><input type="text" id="new_country"></td>
+<td><input type="text" id="new_age"></td>
+<td><input type="button" class="add" onclick="add_row();" value="Nuevo Pedido"></td>
+</tr>
+
+</table>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <!-- Menu -->
+  
+            <footer class="absolute  left-0 w-full">
+                <div class="text-white container mx-auto tm-container p-8 text-lg flex flex-col md:flex-row justify-between">
+                    <span>Copyright 2022 Space Cakes. All rights reserved.</span>
+                </div>                
+            </footer>
+        </div>        
+    </div>    
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.singlePageNav.min.js"></script>
+    <script>
+
+        function checkAndShowHideMenu() {
+            if(window.innerWidth < 768) {
+                $('#tm-nav ul').addClass('hidden');                
+            } else {
+                $('#tm-nav ul').removeClass('hidden');
+            }
+        }
+
+        $(function(){
+            var tmNav = $('#tm-nav');
+            tmNav.singlePageNav();
+
+            checkAndShowHideMenu();
+            window.addEventListener('resize', checkAndShowHideMenu);
+
+            $('#menu-toggle').click(function(){
+                $('#tm-nav ul').toggleClass('hidden');
+            });
+
+            $('#tm-nav ul li').click(function(){
+                if(window.innerWidth < 768) {
+                    $('#tm-nav ul').addClass('hidden');
+                }                
+            });
+
+            $(document).scroll(function() {
+                var distanceFromTop = $(document).scrollTop();
+
+                if(distanceFromTop > 100) {
+                    tmNav.addClass('scroll');
+                } else {
+                    tmNav.removeClass('scroll');
+                }
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
